@@ -1,8 +1,6 @@
 # OSScheduler Visualizer
 
-🔗 Live Demo: https://osschedulevisualizer.onrender.com/
-
----
+🔗 Live Demo: https://osschedulevisualizer.onrender.com
 
 ---
 
