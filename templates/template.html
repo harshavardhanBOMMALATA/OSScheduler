@@ -1,0 +1,195 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>OS Scheduler</title>
+
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<link rel="stylesheet" href="{% static 'styles/template.css' %}">
+</head>
+
+<body>
+
+<div class="card title-card">
+  <h1>OS Scheduler</h1>
+  <p>CPU Scheduling Algorithm Visualizer</p>
+</div>
+
+<div class="container">
+
+<div class="card">
+  <label>Algorithm</label>
+  <select id="algorithmSelect">
+    <option>FCFS</option>
+    <option>SJF</option>
+    <option>SRTF</option>
+    <option>LJF</option>
+    <option>LRTF</option>
+    <option>Priority</option>
+    <option>Preemptive Priority</option>
+  </select>
+</div>
+
+
+<div class="card">
+  <h3>Process Input</h3>
+  <p>low priority means high preference</p>
+  <table>
+    <thead>
+      <tr>
+        <th>PID</th>
+        <th>Arrival Time</th>
+        <th>CPU / IO Bursts</th>
+        <th class="priority-col"></th>
+      </tr>
+    </thead>
+    <tbody id="processTableBody">
+      <tr>
+        <td class="pid">P1</td>
+        <td><input type="number" value="0"></td>
+        <td><input type="text" value="5,3,4"></td>
+        <td class="priority-col"><input type="number"></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="row" style="margin-top:16px;">
+    <div class="col">
+      <button id="addProcessBtn">+ Add Process</button>
+    </div>
+    <div class="col">
+      <button id="removeProcessBtn" style="background:#e55353;">
+        - Remove Process
+      </button>
+    </div>
+  </div>
+
+  <div class="row" style="margin-top:16px;">
+    <div class="col">
+      <label>Context Switch Time</label>
+      <input type="number" id="contextSwitchInput" value="0" min="0">
+    </div>
+  </div>
+
+  <div class="row" style="margin-top:16px;">
+    <div class="col">
+      <button id="runSchedulerBtn">Run Scheduler</button>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <h3>Gantt Chart</h3>
+  <div id="gantt"></div>
+</div>
+
+<div class="card">
+  <h3>Timeline Chart</h3>
+  <div id="timeline"></div>
+</div>
+
+
+<div class="vs-card">
+
+  <h3>Process State Visualization</h3>
+  <h4>Time: <span id="timer">0</span></h4>
+
+  <div class="viz-canvas">
+
+    <!-- TOP ROW STATES -->
+    <div id="state-new" class="state-box">
+      <div class="state-title">NEW</div>
+      <div id="newBox" class="process-holder"></div>
+    </div>
+
+    <div id="state-ready" class="state-box">
+      <div class="state-title">READY</div>
+      <div id="readyBox" class="process-holder"></div>
+    </div>
+
+    <div id="state-running" class="state-box running">
+      <div class="state-title">RUNNING</div>
+      <div id="runningBox" class="process-holder"></div>
+    </div>
+
+    <div id="state-terminated" class="state-box terminated">
+      <div class="state-title">TERMINATED</div>
+      <div id="terminatedBox" class="process-holder"></div>
+    </div>
+
+    <!-- BOTTOM STATE -->
+    <div id="state-blocked" class="state-box blocked">
+      <div class="state-title">BLOCKED</div>
+      <div id="blockedBox" class="process-holder"></div>
+    </div>
+
+    <!-- ARROWS (STATIC, PURE VISUAL) -->
+    <div class="arrow arrow-new-ready">→</div>
+    <div class="arrow arrow-ready-running">→
+      <div class="arrow arrow-running-ready">←</div> 
+    </div>
+
+
+    <div class="arrow arrow-running-terminated">→</div>
+
+    <div class="arrow arrow-running-blocked">↓</div>
+    <div class="arrow arrow-blocked-ready">↑</div>
+
+  </div>
+
+  <div class="row" style="margin-top:16px;">
+    <div class="col">
+      <button onclick="visualization()">Start Visualization</button>
+    </div>
+  </div>
+
+</div>
+
+
+
+
+</div>
+
+
+<div class="row">
+  <div class="col card">
+    <h3>Metrics Table</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>PID</th><th>Arrival</th><th>Burst</th>
+          <th>CT</th><th>TAT</th><th>WT</th><th>RT</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Metrics rows will be populated here -->
+      </tbody>
+    </table>
+  </div>
+
+  <div class="col card">
+    <h3>Average Metrics</h3>
+    <div class="metrics-box">Avg TAT:</div>
+    <div class="metrics-box">Avg WT:</div>
+    <div class="metrics-box">Avg RT:</div>
+
+    <h3 style="margin-top:20px;">System Metrics</h3>
+    <div class="metrics-box">CPU Utilization:</div>
+    <div class="metrics-box">Throughput:</div>
+    <div class="metrics-box">Total Time:</div>
+  </div>
+</div>
+
+<div class="footer">
+  <b>CPU Scheduler</b><br>
+  Interactive CPU Scheduling Simulator for Operating Systems.<br>
+  © 2026 CPU Scheduler
+</div>
+
+</div>
+<input type="hidden" id="csrfToken" value="{{ csrf_token }}">
+
+<script src="{% static 'scripts/template.js' %}"></script>
+</body>
+</html>

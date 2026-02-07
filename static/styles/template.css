@@ -1,0 +1,292 @@
+* {
+  box-sizing: border-box;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+body {
+  margin: 0;
+  background: #f5f7fb;
+  padding: 24px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+}
+
+.card {
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 22px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+.row {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.col {
+  flex: 1;
+  min-width: 240px;
+}
+
+label {
+  font-weight: 600;
+  margin-bottom: 6px;
+  display: block;
+}
+
+select, input, button {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #d0d7e2;
+}
+
+button {
+  background: #3b6fe6;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #2f5bd3;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 1px solid #d8dee9;
+  padding: 10px;
+  text-align: center;
+}
+
+th {
+  background: #f0f3fa;
+}
+
+.pid {
+  color: #2f5bd3;
+  font-weight: 600;
+}
+
+.metrics-box {
+  background: #f0f3fa;
+  padding: 14px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+.footer {
+  text-align: center;
+  padding: 20px;
+  color: #555;
+  border-top: 1px solid #ddd;
+}
+
+.title-card {
+  text-align: center;
+  padding: 30px 20px;
+}
+
+.priority-col {
+  display: none;
+}
+
+
+
+/* =============================
+   PROCESS STATE VISUALIZATION
+============================= */
+
+.vs-card {
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 22px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  overflow-x: auto;
+}
+
+/* Canvas */
+.viz-canvas {
+  position: relative;
+  width: 100%;
+  min-width: 900px;
+  height: 320px;
+  margin: 20px auto;
+}
+
+/* =============================
+   STATE BOXES
+============================= */
+
+.state-box {
+  position: absolute;
+  width: 170px;
+  min-height: 90px;
+  border: 2px solid #2f5bd3;
+  border-radius: 10px;
+  background: #f9fbff;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+/* Titles */
+.state-title {
+  text-align: center;
+  font-weight: 700;
+  color: #2f5bd3;
+  margin-bottom: 6px;
+}
+
+/* State colors */
+.state-box.running {
+  background: #e9fff0;
+  border-color: #2dbf65;
+}
+
+.state-box.blocked {
+  background: #fff3cd;
+  border-color: #ff9800;
+  width: 70%;
+}
+
+.state-box.terminated {
+  background: #ffe6e6;
+  border-color: #ff3b3b;
+}
+
+/* =============================
+   STATE POSITIONS
+============================= */
+
+#state-new {
+  top: 40px;
+  left: 40px;
+}
+
+#state-ready {
+  top: 40px;
+  left: 250px;
+}
+
+#state-running {
+  top: 40px;
+  left: 460px;
+}
+
+#state-terminated {
+  top: 40px;
+  left: 670px;
+}
+
+#state-blocked {
+  top: 190px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* =============================
+   PROCESS HOLDERS
+============================= */
+
+.process-holder {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+
+/* Process card */
+.process-card {
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  background: #e0e0e0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+/* =============================
+   ARROWS
+============================= */
+
+.arrow {
+  position: absolute;
+  font-size: 40px;
+  color: #666;
+  font-weight: bold;
+}
+
+/* Horizontal arrows */
+.arrow-new-ready {
+  top: 55px;
+  left: 215px;
+}
+
+.arrow-ready-running {
+  top: 30px;
+  left: 425px;
+}
+
+.arrow-running-terminated {
+  top: 55px;
+  left: 635px;
+}
+
+/* Vertical arrows */
+.arrow-running-blocked {
+  top: 135px;
+  left: 545px;
+}
+
+.arrow-blocked-ready {
+  top: 135px;
+  left: 335px;
+}
+
+/* Active glow */
+.arrow.active {
+  color: #2f5bd3;
+  text-shadow: 0 0 10px #2f5bd3;
+}
+
+
+
+/* =============================
+   METRICS TABLE SCROLLER (IN-PLACE)
+============================= */
+
+.col.card table {
+  display: block;
+  max-height: 420px;   /* controls visible height */
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.col.card thead,
+.col.card tbody {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+/* Sticky header */
+.col.card thead th {
+  position: sticky;
+  top: 0;
+  background: #f0f3fa;
+  z-index: 1;
+}
