@@ -7,6 +7,9 @@
 
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 <link rel="stylesheet" href="{% static 'styles/template.css' %}">
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
 </head>
 
 <body>
@@ -181,11 +184,58 @@
   </div>
 </div>
 
-<div class="footer">
+
+<div style="
+  text-align:center;
+  padding:22px;
+  background-color:#0f172a;
+  color:#e5e7eb;
+  font-size:14px;
+">
+
   <b>CPU Scheduler</b><br>
-  Interactive CPU Scheduling Simulator for Operating Systems.<br>
+  Interactive CPU Scheduling Simulator for Operating Systems.<br><br>
+
+  <a href="https://www.linkedin.com/in/harshavardhan-bommalata-7bb9442b0"
+     target="_blank"
+     title="LinkedIn"
+     style="margin:0 22px; color:#e5e7eb; font-size:26px; display:inline-block; transition:all 0.3s ease;"
+     onmouseover="this.style.transform='translateY(-6px) scale(1.25)'; this.style.color='#0a66c2';"
+     onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.color='#e5e7eb';">
+    <i class="fab fa-linkedin-in"></i>
+  </a>
+
+  <a href="https://github.com/harshavardhanBOMMALATA"
+     target="_blank"
+     title="GitHub"
+     style="margin:0 22px; color:#e5e7eb; font-size:26px; display:inline-block; transition:all 0.3s ease;"
+     onmouseover="this.style.transform='translateY(-6px) scale(1.25)'; this.style.color='#ffffff';"
+     onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.color='#e5e7eb';">
+    <i class="fab fa-github"></i>
+  </a>
+
+  <a href="https://www.instagram.com/always_harsha_royal/?hl=en"
+     target="_blank"
+     title="Instagram"
+     style="margin:0 22px; color:#e5e7eb; font-size:26px; display:inline-block; transition:all 0.3s ease;"
+     onmouseover="this.style.transform='translateY(-6px) scale(1.25)'; this.style.color='#e1306c';"
+     onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.color='#e5e7eb';">
+    <i class="fab fa-instagram"></i>
+  </a>
+
+  <a href="mailto:hbommalata@gmail.com"
+     title="Email"
+     style="margin:0 22px; color:#e5e7eb; font-size:26px; display:inline-block; transition:all 0.3s ease;"
+     onmouseover="this.style.transform='translateY(-6px) scale(1.25)'; this.style.color='#38bdf8';"
+     onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.color='#e5e7eb';">
+    <i class="fas fa-envelope"></i>
+  </a>
+
+  <br><br>
   © 2026 CPU Scheduler
 </div>
+
+
 
 </div>
 <input type="hidden" id="csrfToken" value="{{ csrf_token }}">
